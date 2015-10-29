@@ -1,8 +1,8 @@
 #+TITLE:       Preview pdf in org-mode
-#+AUTHOR:      Wenjain Young
-#+EMAIL:       jain.y@WenjaindeiMac.local
+#+AUTHOR:      jain.y
+#+EMAIL:       jain.y@126.com
 #+DATE:        2015-10-25 Sun
-#+URI:         /blog/%y/%m/%d/org-page/org-mode/
+#+URI:         /blog/%y/%m/%d/priview-pdf-in-org-mode
 #+KEYWORDS:    org-mode, Latex
 #+TAGS:        org-mode, LaTeX
 #+LANGUAGE:    en
