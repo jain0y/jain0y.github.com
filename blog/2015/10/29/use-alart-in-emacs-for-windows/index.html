@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Use alart in emacs for windows - Jain&#39;s Page</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="jain.y" />
+    <meta name="description" content="Use growl for emacs alert" />
+    <meta name="keywords" content="alart, emacs, windows, growlnotify, growlforwindows" />
+
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/media/css/posts.css" type="text/css">
+    <link rel="stylesheet" href="/media/css/prettify.css" type="text/css">
+  </head>
+
+  <body class="container">
+<header id="header">
+        <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Jain&#39;s Page</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                            <!-- <li class="active"><a href="/">Blog</a></li> -->
+                            <li class="active"><a href="/blog/">Blog</a></li>
+
+                        <li><a href="/tags/">Tags</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="https://github.com/jain0y">GitHub</a></li>
+                        <li><a href="/rss.xml">RSS</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+</header>
+
+
+<section id="content" role="main">
+    <div id="outline-container-sec-" class="row" style="padding-top: 70px">
+        <div class="col-md-2"></div>
+            <h1>Use alart in emacs for windows</h1>
+            
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">alart 是个什么</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+使用 alart 可以实现在 emacs 中通过弹窗的方式给用户发消息。
+alart 支持 Mac, 在 Mac 下可以使用 Growl for Mac。
+alart 默认是支持 Growl for Mac, 无需其他设置，安装好 Growl 和 growlnotify 后直接可以使用。
+</p>
+
+<p>
+请从 EmacsWIki 找答案：<a href="http://www.emacswiki.org/emacs/Alert">EmacsWiki: Alert</a>
+</p>
+
+<p>
+alert Github：  <a href="https://github.com/jwiegley/alert">jwiegley/alert</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Mac 下的 Growl，Growl for Mac</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+要在 Mac 下使用 alart，先要安装 <code>growl</code> 和 <code>growlnotify</code> 。
+</p>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">AppStore 中给出的说明是这样的</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+<p>
+Growl 是 Mac 通知系统的终极解决方案。这是获知各种应用的情况或通知的最简单快速的方式,无论您是否在电脑前。
+</p>
+
+<p>
+有天我们在 Adium 上交流,同时在处理 iPhoto 上的照片。因为谈话的内容比较重要,我们不得不在收到每条消息时都切换应用来查看。无论是否与这次谈话相关,我们都得切换到 Adium 才能知道具体内容。这就是 Growl 出现的原因,来回切换很让人崩溃。实时的通知系统能让你快速了解你需要知道的一切。Growl 友好的通知和 Rollup 窗口,让你不会漏掉所有消息,无论你是否暂时离开了你的 Mac。
+</p>
+
+<p>
+之前从未有如此个性化并高效的通知系统。你能以多种方式接收通知,包括显示在屏幕上,通过电子邮件,甚至可以让电脑读出来。另外,如果你懂得一点 Web 技术(CSS/XHTML/Javascript),你就可以创建你自己想要的 Growl 通知样式。
+</p>
+
+<p>
+列出一些很棒的特性。
+</p>
+
+<ul class="org-ul">
+<li>自定义通知。选择 Growl 的样式,尝试体验一下。</li>
+<li>在你离开的时候 Growl 还是努力工作。 然后回到 Mac,在 Rollup 里看看你离开的时候都发生了什么。</li>
+<li>易用的应用栏,定制你想收到和拒绝的消息。</li>
+<li>使用 Speech 样式来听通知,对于视力略差的使用者很有帮助。</li>
+<li>实用的通知历史,帮助你纵观所发生的全部。</li>
+<li>Growl 自带许多不同的样式。比如 Nano 样式显示地都很小,而 Music Video 则都是大字。</li>
+<li>用 Web 技术发明你自己的 Growl 样式,用你的品味定制 Growl。</li>
+<li>从 Cocoa,AppleScript,网络都能给 Growl 发送通知。</li>
+<li>网络支持。两个或多个 Mac 之间就能互相转发通知。</li>
+<li>通过 Prowl,甚至可以在 iPhone 和 iPad 上收到通知。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">如何获得 Growl for Mac</h3>
+<div class="outline-text-3" id="text-orgheadline4">
+<p>
+<code>Grow fro Mac</code> 的官方主页：<a href="http://growl.info/">Growl</a>
+</p>
+
+<p>
+<code>Grow</code> 官方兼容 OS X 10.7 或更高版本的是收费的，不过有一个 <a href="http://www.appinn.com/growl-fork/">Growl Fork</a> ，是在 Growl 最后开放的源代码版本(1.22 版)基础上改进的，修复了原来版本在 Mac OS X 10.7 Lion 崩溃的问题，依然免费提供。
+</p>
+
+<p>
+<code>Growl Fork</code> 可以从这里下载：<a href="http://www.appinn.com/growl-fork/">Growl Fork – 免费的消息通知系统 Mac</a>
+</p>
+
+<p>
+下载后直接安装便可使用，在安装完 <code>Growl</code> 后，还要安装 <code>growlnotify</code> ，在 Extras 下。顾名思义， <code>growlnotify</code> 是给 <code>growl</code> 发通知的。
+</p>
+
+<p>
+安装好了 <code>growl</code> 和 <code>growlnotify</code> 后，在 emacs（需要装 alert）中
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(alert "Hello growl")
+</pre>
+</div>
+
+<p>
+屏幕上就会出现以当前 buffer 名为标题的弹窗："Hello growl"。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">alert 如何工作</h3>
+<div class="outline-text-3" id="text-orgheadline5">
+<p>
+那么 Emacs 的 alert 是如何工作的呢。
+</p>
+</div>
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">alert 中是如何使用 growl 的</h4>
+<div class="outline-text-4" id="text-orgheadline6">
+<div class="org-src-container">
+
+<pre class="src src-emacs-list">(defun alert-growl-notify (info)
+  (if alert-growl-command
+      (let ((args
+             (list "--appIcon"  "Emacs"
+                   "--name"     "Emacs"
+                   "--title"    (alert-encode-string (plist-get info :title))
+                   "--message"  (alert-encode-string (plist-get info :message))
+                   "--priority" (number-to-string
+                                 (cdr (assq (plist-get info :severity)
+                                            alert-growl-priorities))))))
+        (if (and (plist-get info :persistent)
+                 (not (plist-get info :never-persist)))
+            (nconc args (list "--sticky")))
+        (apply #'call-process alert-growl-command nil nil nil args))
+    (alert-message-notify info)))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">参数都是什么？</h4>
+<div class="outline-text-4" id="text-orgheadline7">
+<p>
+最后的调用命令是
+</p>
+<pre class="example">
+growlnotify --appIcon Emacs --name Emacs --title emacs-alart-for-windows.org --message test --priority 0
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8">Windows 下的 Growl，Growl for windows</h2>
+<div class="outline-text-2" id="text-orgheadline8">
+<p>
+下载地址：<a href="http://www.growlforwindows.com/gfw/">http://www.growlforwindows.com/gfw/</a>
+</p>
+
+<p>
+下载安装在控制台下测试都没有问题，可是通过 Alert 怎么也掉不出。后来看下来 alert-growl-notify，穿的参数都是 Growl For Mac 的参数格式，
+Windows 下水土不服。
+</p>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11">Growl for Windows</h3>
+<div class="outline-text-3" id="text-orgheadline11">
+</div><div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9">使用帮助：<a href="http://www.growlforwindows.com/gfw/help/growlnotify.aspx">Growl for Windows</a></h4>
+<div class="outline-text-4" id="text-orgheadline9">
+<pre class="example">
+NAME
+
+     growlnotify -- Send a Growl notification to a local or remote host
+
+SYNOPSIS
+
+     growlnotify [/t:title] [/id:id] [/s:sticky] [/p:priority] [/i:icon] [/c:coalescingid]
+            [/a:application] [/ai:appicon] [/r:types] [/n:type]
+            [/cu:callbackurl]
+            [/host:host] [/port:port]
+            [/pass:password] [/enc:algorithm] [/hash:algorithm]
+            [/silent:suppressoutput]
+            messagetext
+</pre>
+
+<p>
+虽然有了 <code>Growl for Windows</code> ，但是给它们传的参数形式不一样
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">Mac</th>
+<th scope="col" class="org-left">Windows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Applicaton Icon</td>
+<td class="org-left">--appIcon AppIcon</td>
+<td class="org-left">/ai:appicon</td>
+</tr>
+
+<tr>
+<td class="org-left">Name</td>
+<td class="org-left">--name Name</td>
+<td class="org-left">/n:type</td>
+</tr>
+
+<tr>
+<td class="org-left">Title</td>
+<td class="org-left">--title Title</td>
+<td class="org-left">/t:title</td>
+</tr>
+
+<tr>
+<td class="org-left">Message</td>
+<td class="org-left">--message Messagetext</td>
+<td class="org-left">messagetext</td>
+</tr>
+
+<tr>
+<td class="org-left">Priority</td>
+<td class="org-left">--priority Priority</td>
+<td class="org-left">/p:priority</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10">解决思路</h4>
+<div class="outline-text-4" id="text-orgheadline10">
+<p>
+一个是再写一个 (defun alert-growlwin-notify (info)) ，只看得懂一点 emacs lisp，写的难度太大，所以就用了第二个方法，加了一层 Wrapper，拿到参数的值再传给 <code>growlnotify</code> 。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+    </div>
+</section>
+
+<div>
+      
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> 
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+    <script src="/media/js/main.js"></script>
+     
+        <script type="text/javascript">
+         var _gaq = _gaq || [];
+         _gaq.push(['_setAccount', 'UA-69292321-1']);
+         _gaq.push(['_trackPageview']);
+
+         (function() {
+             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+         })();
+        </script>
+     
+       <footer class="footer"> 
+            <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p> 
+            <p> Copyright &copy; 2015 - <span id="footerYear"></span> <a href="mailto:jain &lt;dot&gt; y">jain.y</a> &nbsp;&nbsp;-&nbsp;&nbsp; Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a> <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script> </p>
+        </footer> 
+</div> 
+
+  </body>
+</html>

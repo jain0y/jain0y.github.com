@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Preview pdf in org-mode - Jain&#39;s Page</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="jain.y" />
+    <meta name="description" content="在 org-mode 预览 pdf 文件" />
+    <meta name="keywords" content="org-mode, Latex" />
+
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/media/css/posts.css" type="text/css">
+    <link rel="stylesheet" href="/media/css/prettify.css" type="text/css">
+  </head>
+
+  <body class="container">
+<header id="header">
+        <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Jain&#39;s Page</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                            <!-- <li class="active"><a href="/">Blog</a></li> -->
+                            <li class="active"><a href="/blog/">Blog</a></li>
+
+                        <li><a href="/tags/">Tags</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="https://github.com/jain0y">GitHub</a></li>
+                        <li><a href="/rss.xml">RSS</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+</header>
+
+
+<section id="content" role="main">
+    <div id="outline-container-sec-" class="row" style="padding-top: 70px">
+        <div class="col-md-2"></div>
+            <h1>Preview pdf in org-mode</h1>
+            
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">环境准备</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<ul class="org-ul">
+<li>需要安装 Latex 套件，这个不是本文点重点，如果你在 org-mode 下还不能正常导出 pdf 文件，那么下面的内容和你还没什么关系。你就不用浪费时间了，先去折腾 org-mode 写 pdf 吧。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">安装插件</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">latex-preview-pane</h3>
+<div class="outline-text-3" id="text-orgheadline2">
+<p>
+可以手动安装，可以通过 emacs 的 package-install 安装。安装完成后设置很简单，只需要在配置文件中加一句
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(latex-preview-pane-enable)
+</pre>
+</div>
+
+<p>
+我从 org-mode 生成 pdf 的时候使用的是 xelatex，latex-preview-pane 默认使用的是 pdflatex。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(setq pdf-latex-command "xelatex")
+</pre>
+</div>
+
+<p>
+具体可以参考 <a href="http://www.emacswiki.org/emacs/LaTeXPreviewPane">EmacsWiki: La Te X Preview Pane</a> 。
+</p>
+
+<p>
+一般情况，以前步骤完成后，就可以正常使用了。可是可是，我通常都遇到的都是很二般的情况。看我下面慢慢道来。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8">遇到的问题</h2>
+<div class="outline-text-2" id="text-orgheadline8">
+</div><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">对 latex-preview-pane 插件对理解</h3>
+<div class="outline-text-3" id="text-orgheadline4">
+<p>
+看了这个插件的一些功能以后，感觉其实他跟 org-mode 没任何关系，这个插件事很 Latex 文件（.tex）直接相关的，这个插件是在 tex 文件保存时，生成并预览 pdf。而他不仅仅可以实时预览，更重要的是可以定位错误行。当 tex 文件出现错误时，他就会停止并定位到错误行。OMG，我的 org-latex-classes 配置可是全靠-interaction nonstopmode 忽略一切错误才生成的 pdf，有点小问题你就罢工了。。。不合适。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">hack latex-preview-pane</h3>
+<div class="outline-text-3" id="text-orgheadline5">
+<p>
+看到下面这里的时候，我恍然大悟，立刻去看了用我的命令生成 pdf 文件后，命令的范围值 —— 1，是 1。。为什么是 1 呢，我觉得应该是因为我的 org-latex-classes 会出很警告，或者直接出错误，我不懂 LaTeX 的，只知道用 org-mode 生成 pdf 很方便，又没时间去了解 LaTeX，就只有去造个返回值 0，欺骗一下下。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(defun lpp/invoke-pdf-latex-command ()
+  (let ((buff (expand-file-name (lpp/buffer-file-name))) (default-directory (file-name-directory (expand-file-name (lpp/buffer-file-name)))))
+    (if shell-escape-mode
+  (call-process pdf-latex-command nil "*pdflatex-buffer*" nil shell-escape-mode buff)
+      (call-process pdf-latex-command nil "*pdflatex-buffer*" nil buff)
+      )
+    )
+  )
+
+(defun latex-preview-pane-update-p () 
+(if (eq (lpp/invoke-pdf-latex-command) 1) //重点看这里，判断了范围值
+    (progn
+      (lpp/display-backtrace)
+      (remove-overlays)
+      (lpp/line-errors-to-layovers (lpp/line-errors))
+      )
+
+  (let ((pdf-filename (replace-regexp-in-string "\.tex$" ".pdf" (lpp/buffer-file-name)))
+  (tex-buff (current-buffer))
+  (pdf-buff (replace-regexp-in-string "\.tex" ".pdf" (buffer-name (get-file-buffer (lpp/buffer-file-name))))))
+    (remove-overlays)
+    ;; if the file doesn't exist, say that the file isn't available due to error messages
+    (if (file-exists-p pdf-filename)
+    (if (eq (get-buffer pdf-buff) nil)
+        (set-window-buffer (lpp/window-containing-preview) (find-file-noselect pdf-filename))
+      (progn 
+        (set-window-buffer (lpp/window-containing-preview) pdf-buff) 
+        (switch-to-buffer-other-window pdf-buff)
+        (doc-view-revert-buffer nil t)
+        (switch-to-buffer-other-window tex-buff) 
+        ))
+
+      ))))
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">Windows</h4>
+<div class="outline-text-4" id="text-orgheadline6">
+<p>
+刚配置好的时候是在 Win7 的系统下完成的，就写了一个批处理，把 xelatex 命令包了一层，不知道要传几个参数进来，偷懒就写了 5 个。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-shell-script">xelatex -interaction nonstopmode %1 %2 %3 %4 %5
+exit 0
+</pre>
+</div>
+
+<p>
+在 emacs 中显示 pdf 需要 xpdf 和 ghostscript。我在 windows 下使用 msys2，直接
+</p>
+<pre class="example">
+pacman -S xpdf ghostscript
+</pre>
+<p>
+就可以了。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">Linux/Mac</h4>
+<div class="outline-text-4" id="text-orgheadline7">
+<p>
+既然在 Windows 下一个批处理就搞定了
+</p>
+<div class="org-src-container">
+
+<pre class="src src-shell-script">#!/bin/bash
+xelatex -interaction nonstopmode $*
+exit 0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    </div>
+</section>
+
+<div>
+      
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> 
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+    <script src="/media/js/main.js"></script>
+     
+        <script type="text/javascript">
+         var _gaq = _gaq || [];
+         _gaq.push(['_setAccount', 'UA-69292321-1']);
+         _gaq.push(['_trackPageview']);
+
+         (function() {
+             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+         })();
+        </script>
+     
+       <footer class="footer"> 
+            <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p> 
+            <p> Copyright &copy; 2015 - <span id="footerYear"></span> <a href="mailto:jain &lt;dot&gt; y &lt;at&gt; 126 &lt;dot&gt; com">jain.y</a> &nbsp;&nbsp;-&nbsp;&nbsp; Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a> <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script> </p>
+        </footer> 
+</div> 
+
+  </body>
+</html>
