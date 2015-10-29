@@ -1,0 +1,66 @@
+#+TITLE:       User alart in emacs for windows
+#+AUTHOR:      
+#+EMAIL:       jain.y@PC-20151013JVTD
+#+DATE:        2015-10-29 周四
+#+URI:         /blog/%y/%m/%d/user-alart-in-emacs-for-windows
+#+KEYWORDS:    alart, emacs, windows, growlnotify, growlforwindows
+#+TAGS:        emacs, growlnotify
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: Use Growl for Windows in emacs alert
+
+* alart 是个什么鬼
+使用 alart 可以实现在 emacs 中通过弹窗的方式给用户发消息。
+alart 支持 Mac, 调用的是 Growl for Mac。
+请从 EmacsWIki 找答案：[[http://www.emacswiki.org/emacs/Alert][EmacsWiki: Alert]]
+alert Github：  [[https://github.com/jwiegley/alert][jwiegley/alert]]
+
+* Windows 下的 Growl，Growl for windows
+下载地址：http://www.growlforwindows.com/gfw/
+下载安装在控制台下测试都没有问题，可是通过 Alert 怎么也掉不出。后来看下来 alert-growl-notify，穿的参数都是 Growl For Mac 的参数格式，
+Windows 下水土不服。
+
+** Growl for Mac
+#+BEGIN_SRC emacs-list
+(defun alert-growl-notify (info)
+  (if alert-growl-command
+      (let ((args
+             (list "--appIcon"  "Emacs"
+                   "--name"     "Emacs"
+                   "--title"    (alert-encode-string (plist-get info :title))
+                   "--message"  (alert-encode-string (plist-get info :message))
+                   "--priority" (number-to-string
+                                 (cdr (assq (plist-get info :severity)
+                                            alert-growl-priorities))))))
+        (if (and (plist-get info :persistent)
+                 (not (plist-get info :never-persist)))
+            (nconc args (list "--sticky")))
+        (apply #'call-process alert-growl-command nil nil nil args))
+    (alert-message-notify info)))
+#+END_SRC
+
+最后的调用命令是
+#+BEGIN_EXAMPLE
+growlnotify --appIcon Emacs --name Emacs --title emacs-alart-for-windows.org --message test --priority 0
+#+END_EXAMPLE
+
+** Growl for Windows
+使用帮助：[[http://www.growlforwindows.com/gfw/help/growlnotify.aspx][Growl for Windows]]
+#+BEGIN_EXAMPLE
+NAME
+
+     growlnotify -- Send a Growl notification to a local or remote host
+
+SYNOPSIS
+
+     growlnotify [/t:title] [/id:id] [/s:sticky] [/p:priority] [/i:icon] [/c:coalescingid]
+            [/a:application] [/ai:appicon] [/r:types] [/n:type]
+            [/cu:callbackurl]
+            [/host:host] [/port:port]
+            [/pass:password] [/enc:algorithm] [/hash:algorithm]
+            [/silent:suppressoutput]
+            messagetext
+#+END_EXAMPLE
+
+
+
