@@ -1,6 +1,6 @@
 #+TITLE:       Use alart in emacs for windows
 #+AUTHOR:      jain.y
-#+EMAIL:       jain.y
+#+EMAIL:       jain.y@126.com
 #+DATE:        2015-10-29 周四
 #+URI:         /blog/%y/%m/%d/use-alart-in-emacs-for-windows
 #+KEYWORDS:    alart, emacs, windows, growlnotify, growlforwindows
