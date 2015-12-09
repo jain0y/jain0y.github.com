@@ -1,5 +1,13 @@
-#+TITLE: 手动制作 zmaker 电子杂志
-#+OPTIONS: \n:nil
+#+TITLE:       手编辑制作 zmaker 在线电子杂志
+#+AUTHOR:      jain.y
+#+EMAIL:       jain_y@126.com
+#+DATE:        2015-12-09 周三
+#+URI:         /blog/%y/%m/%d/manual-make-online-zmaker
+#+KEYWORDS:    zmaker, 电子杂志
+#+TAGS:        zmaker
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: 手动编辑 zmaker 在线电子杂志
 
 * 原因：
 公司网站上的电子杂志书刊是使用 zmaker 制作的，但是不幸的是 zmaker 倒闭，网上找了很多方法，都无法在线生成电子杂志。
