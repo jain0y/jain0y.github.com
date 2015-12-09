@@ -1,4 +1,4 @@
-#+TITLE:       手编辑制作 zmaker 在线电子杂志
+#+TITLE:       手动编辑制作 zmaker 在线电子杂志
 #+AUTHOR:      jain.y
 #+EMAIL:       jain_y@126.com
 #+DATE:        2015-12-09 周三
