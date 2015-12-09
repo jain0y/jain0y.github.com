@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>手编辑制作 zmaker 在线电子杂志 - Jain&#39;s Page</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="jain.y" />
+    <meta name="description" content="手动编辑 zmaker 在线电子杂志" />
+    <meta name="keywords" content="zmaker, 电子杂志" />
+
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/media/css/posts.css" type="text/css">
+    <link rel="stylesheet" href="/media/css/prettify.css" type="text/css">
+  </head>
+
+  <body class="container">
+<header id="header">
+        <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Jain&#39;s Page</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                            <!-- <li class="active"><a href="/">Blog</a></li> -->
+                            <li class="active"><a href="/blog/">Blog</a></li>
+
+                        <li><a href="/tags/">Tags</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="https://github.com/wjain">GitHub</a></li>
+                        <li><a href="/rss.xml">RSS</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+</header>
+
+
+<section id="content" role="main">
+    <div id="outline-container-sec-" class="row" style="padding-top: 70px">
+        <div class="col-md-2"></div>
+            <h1>手编辑制作 zmaker 在线电子杂志</h1>
+            
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">原因：</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+公司网站上的电子杂志书刊是使用 zmaker 制作的，但是不幸的是 zmaker 倒闭，网上找了很多方法，都无法在线生成电子杂志。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">制作方式：</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+通过对 zmaker 在线生成的电子杂志目录的分析，每一个电子杂志下面除了图片，都会包含以下文件
+</p>
+<pre class="example">
+actions.swf
+appendfile.xml
+config.xml
+flash.xml
+gg.swf
+lframe.swf
+online.html
+pagelist.xml
+rframe.swf
+show.swf
+zcommain.swf
+</pre>
+
+<p>
+这些文件只有 pagelist.xml 文件不同。这个文件中包含了在电子杂志中显示的图片的信息，通过 pagelist.xml 文件进行图片名称以及显示顺序的管理。
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name">pagelist.xml</label>
+<pre class="src src-xml" id="orgsrcblock1">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;PageList&gt;
+        &lt;Page id="0"  lockroot="true" bshowpage="1" pagesize="590,825" backgoundcolor="FFFFFF" swf="00.jpg" /&gt;
+        &lt;Page id="1"  lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="01.jpg" /&gt;
+        &lt;Page id="2"  lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="02.jpg" /&gt;
+        &lt;Page id="3"  lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="03.jpg" /&gt;
+        &lt;Page id="4"  lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="04.jpg" /&gt;
+        &lt;Page id="5"  lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="05.jpg" /&gt;
+        &lt;Page id="6"  lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="06.jpg" /&gt;
+        &lt;Page id="7"  lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="07.jpg" /&gt;
+        &lt;Page id="8"  lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="08.jpg" /&gt;
+        &lt;Page id="9"  lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="09.jpg" /&gt;
+        &lt;Page id="10" lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="10.jpg" /&gt;
+        &lt;Page id="11" lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="11.jpg" /&gt;
+        &lt;Page id="12" lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="12.jpg" /&gt;
+        &lt;Page id="13" lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="13.jpg" /&gt;
+        &lt;Page id="14" lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="14.jpg" /&gt;
+    &lt;/PageList&gt;
+</pre>
+</div>
+
+<p>
+以上是 pagelist.xml 文件中的内容，其中
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;Page id="0"  lockroot="true" bshowpage="1" pagesize="590,825" backgoundcolor="FFFFFF" swf="00.jpg" /&gt;
+</pre>
+</div>
+<p>
+保存的就是显示的图片的信息。其中 id="0" 这个是定义图片显示的顺序，pagesize="808,595" 是图片的大小，swf="00.jpg" 是图片的名字。我们只要把图片根据显示顺序把图片名称按照 00.jpg 的格式命名，然后根据图片的个数修改
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;Page id="0"  lockroot="true" bshowpage="1" pagesize="590,825" backgoundcolor="FFFFFF" swf="00.jpg" /&gt;
+</pre>
+</div>
+<p>
+的个数，然后和其他的 zmaker 的配置信息放到一个目录下，就和使用 zmaker 在线生成的电子杂志是一样的效果了。
+</p>
+
+<p>
+通过以上方式，我们就不再需要 zmaker 软件，可以自定义显示图片来制作在线电子杂志了。
+</p>
+</div>
+</div>
+
+    </div>
+</section>
+
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2015-12-09</span>
+        <span title="last modification date" class="post-info">2015-12-09</span>
+        <span title="tags" class="post-info"><a href="/tags/zmaker/">zmaker</a></span>
+        <span title="author" class="post-info">jain.y</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/2015/12/09/manual-make-online-zmaker";
+          var disqus_url = "http://jain0y.github.io/blog/2015/12/09/manual-make-online-zmaker";
+          var disqus_shortname = 'Jain';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-69292321-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jain_y &lt;at&gt; 126 &lt;dot&gt; com">jain.y</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>
