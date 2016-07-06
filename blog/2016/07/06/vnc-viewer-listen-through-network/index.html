@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>使用 vnc 穿透内网远程控制 - Jain&#39;s Page</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="description" content="使用 vnc viewer 的监听功能连接内网机器远程桌面" />
+    <meta name="keywords" content="vnc,listen,内网穿透" />
+
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/media/css/posts.css" type="text/css">
+    <link rel="stylesheet" href="/media/css/prettify.css" type="text/css">
+  </head>
+
+  <body class="container">
+<header id="header">
+        <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Jain&#39;s Page</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                            <!-- <li class="active"><a href="/">Blog</a></li> -->
+                            <li class="active"><a href="/blog/">Blog</a></li>
+
+                        <li><a href="/tags/">Tags</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="https://github.com/wjain">GitHub</a></li>
+                        <li><a href="/rss.xml">RSS</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+</header>
+
+
+<section id="content" role="main">
+    <div id="outline-container-sec-" class="row" style="padding-top: 70px">
+        <div class="col-md-2"></div>
+            <h1>使用 vnc 穿透内网远程控制</h1>
+            
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">什么是 vnc？</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<ul class="org-ul">
+<li><p>
+VNC (Virtual Network Computer)是虚拟网络计算机的缩写。它 是一款优秀的远程控制工具软件，由著名的 AT&amp;T 的欧洲研究实验室开发的。
+VNC 是在基于 UNIX 和 Linux 操作系统的免费的开源软件，远程控制能力强大，高效实用，其性能可以和 Windows 和 MAC 中的任何远程控制软件媲美。
+</p>
+
+<p>
+在 Linux 中，VNC 包括以下四个命令：vncserver，vncviewer，vncpasswd，和 vncconnect。
+</p>
+
+<p>
+大多数情况下用户只需要其中的两个命令：vncserver 和 vncviewer。
+</p></li>
+
+<li>关于 vnc 的服务端配置请自行搜索。
+<ul class="org-ul">
+<li>Windows 版:
+<ul class="org-ul">
+<li><a href="http://www.tightvnc.com/download.php">Download TightVNC</a></li>
+<li><a href="https://www.realvnc.com/download/vnc/windows/">RealVNC | Download VNC for Windows</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">穿越内网远程控制</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<ul class="org-ul">
+<li>服务端（vnc server）在内网，客户端（vnc viewer）需要有公网 IP。原理是由服务端反向朝着客户端（需要监听端口）发送连接请求。</li>
+
+<li>vnc viewer 监听
+<ul class="org-ul">
+<li>下载:  <a href="https://www.realvnc.com/download/viewer/">RealVNC | Download VNC Viewer</a></li>
+<li><p>
+windows 版启动监听
+</p>
+
+<p>
+在快捷方式中加入 <code>-listen</code> 参数，启动后会最小化到任务栏图标。
+</p></li>
+
+<li><p>
+linux 启动监听
+</p>
+<pre class="example">
+vncviewer -listen
+</pre></li>
+</ul></li>
+
+<li><p>
+vnc server 端请求
+</p>
+<pre class="example">
+vncconfig -display :1 -connect 监听端公网-IP:端口（默认 5500 端口)
+</pre></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">遇到的问题</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+<ul class="org-ul">
+<li>如果客户端也在内网的话，也是无法直接连接的（不能内网 to 内网，只能内网 to 公网）。必须把内网映射到外网。有以下两种方法：
+<ul class="org-ul">
+<li>设置 DMZ 主机：主机地址设置为客户端机器 IP</li>
+<li><p>
+端口映射：把外网端口映射到客户端机器的 5500 端口，比如：公网 8800 -&gt; 客户机 5500，服务器端连接方式如下：
+</p>
+<pre class="example">
+vncconfig -display :1 -connect 公网-IP:8800
+</pre></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+    </div>
+</section>
+
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2016-07-06</span>
+        <span title="last modification date" class="post-info">2016-07-06</span>
+        <span title="tags" class="post-info"><a href="/tags/vnc/">vnc</a>, <a href="/tags/远程/">远程</a>, <a href="/tags/内网/">内网</a></span>
+        <span title="author" class="post-info"></span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/2016/07/06/vnc-viewer-listen-through-network";
+          var disqus_url = "http://wjain.github.io/blog/2016/07/06/vnc-viewer-listen-through-network";
+          var disqus_shortname = 'Jain';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-69292321-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jain &lt;dot&gt; y &lt;at&gt; JAIN-PC"></a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>
