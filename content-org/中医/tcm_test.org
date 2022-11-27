@@ -1,0 +1,6 @@
+#+TITLE: 中医
+#+hugo_section: tcm
+
+* 中草药
+* 针灸
+* 金匮要略
