@@ -1,20 +1,23 @@
-#+TITLE:       手动编辑制作 zmaker 在线电子杂志
-#+AUTHOR:      jain.y
-#+EMAIL:       jain_y@126.com
-#+DATE:        2015-12-09 周三
-#+URI:         /blog/%y/%m/%d/manual-make-online-zmaker
-#+KEYWORDS:    zmaker, 电子杂志
-#+HUGO_TAGS:   zmaker
-#+LANGUAGE:    en
-#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
-#+DESCRIPTION: 手动编辑 zmaker 在线电子杂志
++++
+title = "手动编辑制作 zmaker 在线电子杂志"
+author = ["jain.y"]
+description = "手动编辑 zmaker 在线电子杂志"
+date = 2015-12-09T00:00:00+08:00
+keywords = ["zmaker", [",", "电子杂志"]]
+tags = ["zmaker"]
+draft = false
++++
 
-* 原因：
+## 原因： {#原因}
+
 公司网站上的电子杂志书刊是使用 zmaker 制作的，但是不幸的是 zmaker 倒闭，网上找了很多方法，都无法在线生成电子杂志。
 
-* 制作方式：
+
+## 制作方式： {#制作方式}
+
 通过对 zmaker 在线生成的电子杂志目录的分析，每一个电子杂志下面除了图片，都会包含以下文件
-#+BEGIN_EXAMPLE
+
+```text
 actions.swf
 appendfile.xml
 config.xml
@@ -26,14 +29,12 @@ pagelist.xml
 rframe.swf
 show.swf
 zcommain.swf
-#+END_EXAMPLE
+```
 
-这些文件只有 pagelist.xml 文件不同。这个文件中包含了在电子杂志中显示的图片的信息，通过 pagelist.xml 文件
-进行图片名称以及显示顺序的管理。
+这些文件只有 pagelist.xml 文件不同。这个文件中包含了在电子杂志中显示的图片的信息，通过 pagelist.xml 文件进行图片名称以及显示顺序的管理。
 
-#+NAME: pagelist.xml
-#+CAPTION:pagelist.xml
-#+BEGIN_SRC xml
+<a id="code-snippet--pagelist.xml"></a>
+```xml
 <?xml version="1.0" encoding="utf-8"?>
     <PageList>
         <Page id="0"  lockroot="true" bshowpage="1" pagesize="590,825" backgoundcolor="FFFFFF" swf="00.jpg" />
@@ -52,18 +53,24 @@ zcommain.swf
         <Page id="13" lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="13.jpg" />
         <Page id="14" lockroot="true" bshowpage="1" pagesize="808,595" backgoundcolor="FFFFFF" swf="14.jpg" />
     </PageList>
-#+END_SRC
+```
+<div class="src-block-caption">
+  <span class="src-block-number"><a href="#code-snippet--pagelist.xml">Code Snippet 1</a>:</span>
+  pagelist.xml
+</div>
 
 以上是 pagelist.xml 文件中的内容，其中
-#+BEGIN_SRC xml
+
+```xml
 <Page id="0"  lockroot="true" bshowpage="1" pagesize="590,825" backgoundcolor="FFFFFF" swf="00.jpg" />
-#+END_SRC
-保存的就是显示的图片的信息。
-其中 id="0" 这个是定义图片显示的顺序，pagesize="808,595" 是图片的大小，swf="00.jpg" 是图片的名字。
-我们只要把图片根据显示顺序把图片名称按照 00.jpg 的格式命名，然后根据图片的个数修改
-#+BEGIN_SRC xml
+```
+
+保存的就是显示的图片的信息。其中 id="0" 这个是定义图片显示的顺序，pagesize="808,595" 是图片的大小，swf="00.jpg" 是图片的名字。我们只要把图片根据显示顺序把图片名称按照 00.jpg 的格式命名，然后根据图片的个数修改
+
+```xml
 <Page id="0"  lockroot="true" bshowpage="1" pagesize="590,825" backgoundcolor="FFFFFF" swf="00.jpg" />
-#+END_SRC
+```
+
 的个数，然后和其他的 zmaker 的配置信息放到一个目录下，就和使用 zmaker 在线生成的电子杂志是一样的效果了。
 
 通过以上方式，我们就不再需要 zmaker 软件，可以自定义显示图片来制作在线电子杂志了。
