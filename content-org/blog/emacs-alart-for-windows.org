@@ -5,7 +5,7 @@
 #+URI:         /blog/%y/%m/%d/use-alart-in-emacs-for-windows
 #+KEYWORDS:    alart, emacs, windows, growlnotify, growlforwindows
 #+HUGO_TAGS:   emacs growlnotify
-#+FILETAGS:    emacs
+#+FILETAGS:    @emacs
 #+LANGUAGE:    en
 #+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
 #+DESCRIPTION: Use growl for emacs alert

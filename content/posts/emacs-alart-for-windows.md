@@ -5,6 +5,7 @@ description = "Use growl for emacs alert"
 date = 2015-10-29T00:00:00+08:00
 keywords = ["alart", [",", "emacs"], [",", "windows"], [",", "growlnotify"], [",", "growlforwindows"]]
 tags = ["emacs", "growlnotify"]
+categories = ["emacs"]
 draft = false
 +++
 
