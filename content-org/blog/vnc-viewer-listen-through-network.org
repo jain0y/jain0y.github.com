@@ -4,7 +4,7 @@
 #+DATE:        2016-07-06 周三
 #+URI:         /blog/%y/%m/%d/vnc-viewer-listen-through-network
 #+KEYWORDS:    vnc,listen,内网穿透
-#+TAGS:        vnc,远程,内网
+#+HUGO_TAGS:        vnc,远程,内网
 #+LANGUAGE:    en
 #+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
 #+DESCRIPTION: 使用 vnc viewer 的监听功能连接内网机器远程桌面
