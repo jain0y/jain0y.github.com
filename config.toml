@@ -10,6 +10,7 @@ paginate = 24         # better 4 * 3 * times
 enableGitInfo = true
 
 [params]
+    author = 'wenjian'
     # active fadeIn animate when load page
     hasActiveAnimate = true      
 
